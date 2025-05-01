@@ -1,37 +1,61 @@
-const Colors = {
-    primaryColor: '#008080',
+// src/constants/colors.js
 
-    appBlue: '#0059B2',
-    appYellow: '#FFB000',
+const COLORS = {
+    transparent: 'transparent',
+    // Primary colors
+    primary: '#008080',
+    secondary: '#0059B2',
+    accent: '#FFB000',
 
+    // Neutral colors
     white: '#FFFFFF',
     black: '#000000',
-    transparent: 'transparent',
+    gray: '#808080',
+    lightGray: '#D3D3D3',
+    darkGray: '#404040',
 
-    blackOpacity05: 'rgba(0, 0, 0, 0.05)',
-    blackOpacity10: 'rgba(0, 0, 0, 0.1)',
-    blackOpacity20: 'rgba(0, 0, 0, 0.2)',
-    blackOpacity30: 'rgba(0, 0, 0, 0.3)',
-    blackOpacity40: 'rgba(0, 0, 0, 0.4)',
-    blackOpacity50: 'rgba(0, 0, 0, 0.5)',
-    blackOpacity60: 'rgba(0, 0, 0, 0.6)',
-    blackOpacity70: 'rgba(0, 0, 0, 0.7)',
-    blackOpacity80: 'rgba(0, 0, 0, 0.8)',
-    blackOpacity90: 'rgba(0, 0, 0, 0.9)',
-    blackOpacity95: 'rgba(0, 0, 0, 0.95)',
-    blackOpacity3: 'rgba(26, 29, 37, 0.3)',
-    darkBlackOpacity: 'rgba(0,0,0,0.5)',
+    // Status colors
+    success: '#28A745',
+    warning: '#FFC107',
+    error: '#DC3545',
+    info: '#17A2B8',
 
-    whiteOpacity10: 'rgba(255, 255, 255, 0.1)',
-    whiteOpacity20: 'rgba(255, 255, 255, 0.2)',
-    whiteOpacity30: 'rgba(255, 255, 255, 0.3)',
-    whiteOpacity40: 'rgba(255, 255, 255, 0.4)',
-    whiteOpacity50: 'rgba(255, 255, 255, 0.5)',
-    whiteOpacity60: 'rgba(255, 255, 255, 0.6)',
-    whiteOpacity70: 'rgba(255, 255, 255, 0.7)',
-    whiteOpacity80: 'rgba(255, 255, 255, 0.8)',
-    whiteOpacity90: 'rgba(255, 255, 255, 0.9)',
-    whiteOpacity95: 'rgba(255, 255, 255, 0.95)',
+    // Transparent variants
+    whiteOpacity: {
+        white10: '#FFFFFF1A',
+        white20: '#FFFFFF33',
+        white30: '#FFFFFF4D',
+        white40: '#FFFFFF66',
+        white50: '#FFFFFF80',
+        white60: '#FFFFFF99',
+        white70: '#FFFFFFB3',
+        white80: '#FFFFFFCC',
+        white90: '#FFFFFFE6',
+    },
+
+    blackOpacity: {
+        black10: '#0000001A',
+        black20: '#00000033',
+        black30: '#0000004D',
+        black40: '#00000066',
+        black50: '#00000080',
+        black60: '#00000099',
+        black70: '#000000B3',
+        black80: '#000000CC',
+        black90: '#000000E6',
+    },
+
+    grayOpacity: {
+        gray10: '#8080801A',
+        gray20: '#80808033',
+        gray30: '#8080804D',
+        gray40: '#80808066',
+        gray50: '#80808080',
+        gray60: '#80808099',
+        gray70: '#808080B3',
+        gray80: '#808080CC',
+        gray90: '#808080E6',
+    },
 };
 
-export default Colors;
+export default COLORS;

@@ -46,7 +46,7 @@ const ThemeButton = ({
                     </IconWrapper>
                 )}
                 <ButtonText
-                    color={isBorderButton ? Colors.primaryColor : Colors.white}
+                    color={isBorderButton ? Colors.primary : Colors.white}
                     style={textStyle}>
                     {title}
                 </ButtonText>
@@ -63,16 +63,16 @@ const ThemeButton = ({
 // Styled components
 const ButtonContainer = styled(TouchableOpacity)`
     background-color: ${({isBorderButton}) =>
-        isBorderButton ? 'transparent' : Colors.primaryColor};
+        isBorderButton ? 'transparent' : Colors.primary};
     border-color: ${({isBorderButton}) =>
-        isBorderButton ? Colors.primaryColor : 'transparent'};
+        isBorderButton ? Colors.primary : 'transparent'};
     border-width: ${({isBorderButton}) => (isBorderButton ? '1px' : '0px')};
     margin-left: ${({ml}) => ml || 0}px;
     margin-right: ${({mr}) => mr || 0}px;
     margin-top: ${({mt}) => mt || 0}px;
     margin-bottom: ${({mb}) => mb || 0}px;
-    height: ${({ht}) => ht || hp(5.5)}px;
-    border-radius: ${({radius}) => radius || 16}px;
+    height: ${({ht}) => ht || hp(6)}px;
+    border-radius: ${({radius}) => radius || wp(3)}px;
     align-items: center;
     justify-content: center;
     opacity: ${({disabled}) => (disabled ? 0.5 : 1)};

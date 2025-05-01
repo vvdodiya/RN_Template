@@ -17,7 +17,7 @@ import themeStyles from '@styles/themeStyles';
 // Styled Components
 const SafeAreaContainer = styled.SafeAreaView`
     margin-top: ${({insets}) => (Platform.OS === 'android' ? insets.top : 0)}px;
-    background-color: ${Colors.primaryColor};
+    background-color: ${Colors.primary};
 `;
 
 const Container = styled.View`
@@ -59,8 +59,8 @@ const BgTransparent = styled.View`
 
 const AppToolBar = ({
     title = 'RN Demo',
-    isBackShown = true,
-    isRightIconShown = true,
+    isBackShown = false,
+    isRightIconShown = false,
     rightIconSource = Images.backIcon,
     rightIconResizeMode = 'contain',
     onPressRightIcon = () => {},

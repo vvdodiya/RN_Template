@@ -53,13 +53,13 @@ export const Spacer = styled.View`
 export const PipeView = styled.View`
     height: ${wp(20)}px;
     width: ${wp(2)}px;
-    background-color: ${Colors.primaryColor};
+    background-color: ${Colors.primary};
 `;
 
 // Horizontal separator line
 export const SeparatorLine = styled.View`
     height: ${StyleSheet.hairlineWidth};
-    background-color: ${({color}) => color || Colors.themeGray};
+    background-color: ${({color}) => color || Colors.gray};
 `;
 
 // Scrollable container
@@ -72,7 +72,7 @@ export const ScrollContainer = styled.ScrollView``;
 const BaseText = styled.Text`
     font-size: ${props => props.size || hp(1.8)}px;
     font-family: ${props => props.fontFamily || Fonts.PoppinsRegular};
-    color: ${props => props.color || Colors.white};
+    color: ${props => props.color || Colors.black};
     margin-top: ${({mt}) => mt || 0}px;
     margin-left: ${({ml}) => ml || 0}px;
     margin-right: ${({mr}) => mr || 0}px;
@@ -173,14 +173,14 @@ export const InputText = styled(BaseText)`
 export const LabelText = styled(BaseText)`
     font-size: ${props => props.size || hp(1.5)}px;
     font-family: ${Fonts.PoppinsRegular};
-    color: ${props => (props.color ? props.color : Colors.themeGray)};
+    color: ${props => (props.color ? props.color : Colors.gray)};
     line-height: ${hp(2.2)}px;
 `;
 
 export const InnerLabelText = styled(BaseText)`
     font-size: ${props => props.size || hp(1.5)}px;
     font-family: ${Fonts.PoppinsRegular};
-    color: ${props => (props.color ? props.color : Colors.themeGray)};
+    color: ${props => (props.color ? props.color : Colors.gray)};
     line-height: ${hp(2.2)}px;
     width: ${wp(55)}px;
 `;
