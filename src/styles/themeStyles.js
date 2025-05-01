@@ -137,7 +137,7 @@ export const TextL = styled(BaseText)`
 
 export const TextM = styled(BaseText)`
     font-size: ${props => props.size || hp(2)}px;
-    font-family: ${Fonts.InterRegular};
+    font-family: ${Fonts.PoppinsRegular};
 `;
 
 export const TextS = styled(BaseText)`

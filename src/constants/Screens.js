@@ -5,6 +5,12 @@ const Screens = {
     SignupScreen: 'SignupScreen',
     ForgotPasswod: 'ForgotPasswod',
 
+    //Tab Screens
+    HomeTab: 'HomeTab',
+    SearchTab: 'SearchTab',
+    ProfileTab: 'ProfileTab',
+    NotificationTab: 'NotificationTab',
+
     //   App Screens
     HomeScreen: 'HomeScreen',
     ProfileScreen: 'ProfileScreen',

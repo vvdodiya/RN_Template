@@ -61,7 +61,7 @@ const Router = props => {
 
     return (
         <NavigationContainer theme={MyTheme} ref={navigationRef}>
-            {isAuthenticated ? <AppStack /> : <AuthStack />}
+            {!isAuthenticated ? <AppStack /> : <AuthStack />}
         </NavigationContainer>
     );
 };

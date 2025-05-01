@@ -17,7 +17,7 @@ import themeStyles from '@styles/themeStyles';
 // Styled Components
 const SafeAreaContainer = styled.SafeAreaView`
     margin-top: ${({insets}) => (Platform.OS === 'android' ? insets.top : 0)}px;
-    background-color: ${Colors.primary};
+    background-color: ${Colors.white};
 `;
 
 const Container = styled.View`
@@ -61,7 +61,7 @@ const AppToolBar = ({
     title = 'RN Demo',
     isBackShown = false,
     isRightIconShown = false,
-    rightIconSource = Images.backIcon,
+    rightIconSource = Images.notification,
     rightIconResizeMode = 'contain',
     onPressRightIcon = () => {},
     containerStyle,
@@ -80,14 +80,18 @@ const AppToolBar = ({
         <Subcontainer>
             {isBackShown ? (
                 <IconContainer onPress={onPressBack}>
-                    <Icon source={Images.backIcon} resizeMode="contain" />
+                    <Icon
+                        source={Images.backIcon}
+                        resizeMode="contain"
+                        tintColor={Colors.black}
+                    />
                 </IconContainer>
             ) : (
                 !isTitleLeft && <BgTransparent />
             )}
 
             <TitleContainer isTitleLeft={isTitleLeft}>
-                <Text type="h3" color={Colors.white} style={textStyle}>
+                <Text type="h4" color={Colors.black} style={textStyle}>
                     {title}
                 </Text>
             </TitleContainer>
@@ -97,6 +101,7 @@ const AppToolBar = ({
                     <Icon
                         source={rightIconSource}
                         resizeMode={rightIconResizeMode}
+                        tintColor={Colors.black}
                     />
                 </IconContainer>
             ) : (

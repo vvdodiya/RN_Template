@@ -1,26 +1,23 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import HomeScreen from '@screens/App/HomeScreen/HomeScreen';
-import Screens from '@constants/Screens';
+import TabNavigator from './TabNavaigation/TabNavigator';
+import {Colors} from '@constants/index';
 
 const Stack = createNativeStackNavigator();
 
+/**
+ * App Stack Navigator
+ * Handles the main app navigation flow including tab navigation
+ */
 const AppStack = () => {
     return (
         <Stack.Navigator
-            initialRouteName={Screens.HomeScreen}
             screenOptions={{
                 headerShown: false,
-                fullScreenGestureEnabled: false,
-                animation: 'slide_from_right',
+                cardStyle: {backgroundColor: Colors.white},
             }}>
-            <Stack.Screen
-                name={Screens.HomeScreen}
-                component={HomeScreen}
-                options={{
-                    gestureEnabled: false,
-                }}
-            />
+            <Stack.Screen name="MainTabs" component={TabNavigator} />
+            {/* Add other app screens here */}
         </Stack.Navigator>
     );
 };
