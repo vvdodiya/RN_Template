@@ -5,7 +5,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import AppStack from './AppStack';
 import AuthStack from './AuthStack';
-import {navigationRef} from '@utils/NavigationService';
+import {navigationRef} from '@utils/navigationService';
 import Constants from '@constants/Constant';
 import Colors from '@constants/Color';
 import useAuthData from '@hooks/useAuthData';
@@ -61,7 +61,7 @@ const Router = props => {
 
     return (
         <NavigationContainer theme={MyTheme} ref={navigationRef}>
-            {!isAuthenticated ? <AppStack /> : <AuthStack />}
+            {isAuthenticated ? <AppStack /> : <AuthStack />}
         </NavigationContainer>
     );
 };

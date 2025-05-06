@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components/native';
-import {ActivityIndicator} from 'react-native';
+import {ActivityIndicator, Image} from 'react-native';
 import FastImage from '@d11/react-native-fast-image';
 import {Colors, Images} from '@constants/index';
 import {
@@ -64,32 +64,13 @@ const Container = styled.View`
     height: ${props => props.height || hp(20)}px;
     justify-content: center;
     align-items: center;
-    background-color: ${Colors.gray};
+    background-color: ${props => props.color};
     overflow: hidden;
 `;
 
 const StyledFastImage = styled(FastImage)`
     width: 100%;
     height: 100%;
-`;
-
-const PlaceholderContainer = styled.View`
-    width: 100%;
-    height: 100%;
-    justify-content: center;
-    align-items: center;
-    background-color: ${Colors.gray};
-`;
-
-const PlaceholderImage = styled(FastImage)`
-    width: ${wp(15)}px;
-    height: ${wp(15)}px;
-`;
-
-const PlaceholderText = styled.Text`
-    color: ${Colors.gray};
-    font-size: ${hp(1.8)}px;
-    margin-top: ${hp(1)}px;
 `;
 
 const LoadingContainer = styled.View`
@@ -109,7 +90,7 @@ const AsyncImage = ({
     width,
     height,
     resizeMode = FastImage.resizeMode.cover,
-    placeholder = 'Image not available',
+
     onLoadStart,
     onLoadEnd,
     onError,
@@ -145,22 +126,38 @@ const AsyncImage = ({
     };
 
     const renderPlaceholder = () => (
-        <PlaceholderContainer style={style}>
-            <PlaceholderImage
+        <Container style={style}>
+            <Image
                 source={Images.logo}
-                resizeMode={FastImage.resizeMode.contain}
-                style={imageStyle}
+                resizeMode={resizeMode}
+                style={[{width: '100%', height: '100%'}, imageStyle]}
+                {...props}
             />
-            <PlaceholderText>{placeholder}</PlaceholderText>
-        </PlaceholderContainer>
+        </Container>
     );
 
     if (!imageSource || hasError) {
         return renderPlaceholder();
     }
-
+    if (typeof imageSource === 'number') {
+        console.log('Image source is a number');
+        return (
+            <Container width={width} height={height} style={style}>
+                <Image
+                    source={imageSource}
+                    resizeMode={resizeMode}
+                    style={[{width: '100%', height: '100%'}, imageStyle]}
+                    {...props}
+                />
+            </Container>
+        );
+    }
     return (
-        <Container width={width} height={height} style={style}>
+        <Container
+            width={width}
+            height={height}
+            style={style}
+            color={Colors.gray}>
             <StyledFastImage
                 source={imageSource}
                 resizeMode={resizeMode}

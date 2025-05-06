@@ -1,5 +1,5 @@
 const urls = {
-    staging: 'http://3.22.232.250:8000/', // Staging server
+    staging: '', // Staging server
     local: 'https://f408-103-90-46-227.ngrok-free.app/',
     live: '', //Live server
     termOfServiceLive: '',

@@ -1,20 +1,21 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {Screens} from '@constants/index';
-import SearchScreen from '@screens/App/Search/SearchScreen';
+
+import ChatScreen from '@screens/App/Chat/ChatScreen';
 
 const Stack = createNativeStackNavigator();
 
 /**
- * Search Stack Navigator
- * Handles navigation within the Search tab
+ * Notification Stack Navigator
+ * Handles navigation within the Notification tab
  */
-const SearchStack = () => {
+const ChatStack = () => {
     return (
         <Stack.Navigator>
             <Stack.Screen
-                name={Screens.SearchScreen}
-                component={SearchScreen}
+                name={Screens.ChatScreen}
+                component={ChatScreen}
                 options={{
                     headerShown: false,
                 }}
@@ -23,4 +24,4 @@ const SearchStack = () => {
     );
 };
 
-export default SearchStack;
+export default ChatStack;

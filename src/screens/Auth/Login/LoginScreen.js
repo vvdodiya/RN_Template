@@ -17,13 +17,22 @@ import ThemeButton from '@components/Common/ThemeButton';
 import {H2, LabelText} from '@styles/themeStyles';
 import Colors from '@constants/Color';
 import Images from '@constants/Images';
+
+import Screens from '@constants/Screens';
+import {useDispatch} from 'react-redux';
+import {login} from '@redux/authSlice';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import Constants from '@constants/Constant';
+import {t} from 'i18next';
 import {
     validateEmail,
     validateLoginForm,
     validatePassword,
-} from '@utils/Validation';
-
-import Screens from '@constants/Screens';
+} from '@utils/validate';
+import apiService from '@utils/apiService';
+import {getErrorMessage} from '@utils/getErrorMessage';
+import {showAlert} from '@utils/alerts';
+import {APIEndpoint} from '@constants/ApiEndPoins';
 
 const LoginScreen = ({navigation}) => {
     const [email, setEmail] = useState('');
@@ -32,6 +41,8 @@ const LoginScreen = ({navigation}) => {
         emailError: '',
         passwordError: '',
     });
+
+    const dispatch = useDispatch();
 
     const validateField = (field, value) => {
         if (field === 'email') {
@@ -57,6 +68,24 @@ const LoginScreen = ({navigation}) => {
         if (validation.isValid) {
             // Handle login logic
             console.log('Login pressed', {email, password});
+            let tempUserData = {email, name: 'test'};
+            let authToken = 'test_AuthToken';
+            AsyncStorage.setItem(
+                Constants.asyncStorageKeys.UserData,
+                JSON.stringify(tempUserData),
+            );
+            AsyncStorage.setItem(
+                Constants.asyncStorageKeys.AuthToken,
+                authToken,
+            );
+
+            dispatch(
+                login({
+                    user: {email: email, name: 'test'},
+                    token: authToken,
+                    isAuthenticated: true,
+                }),
+            );
         }
     };
 
@@ -66,7 +95,22 @@ const LoginScreen = ({navigation}) => {
         console.log('Forgot password pressed');
     };
 
-    const handleSignUp = () => {
+    const handleSignUp = async () => {
+        let param = {
+            email: email,
+            password: password,
+            loginType: 'email',
+        };
+        try {
+            let response = await apiService.post(APIEndpoint.login, param);
+            console.log('API response---', response);
+        } catch (error) {
+            console.log('Error', error);
+            let err = getErrorMessage(error);
+            showAlert(err, t('AppName'));
+            console.log('Error msg', err);
+        }
+
         // Handle sign up navigation
         console.log('Sign up pressed');
     };
@@ -80,8 +124,8 @@ const LoginScreen = ({navigation}) => {
 
             <FormContainer>
                 <TextInput
-                    label="Email"
-                    placeholder="Enter your email"
+                    label={t('Email')}
+                    placeholder={t('EnterEmail')}
                     value={email}
                     variant="background"
                     onChangeText={text => {
@@ -99,9 +143,9 @@ const LoginScreen = ({navigation}) => {
                 />
 
                 <TextInput
-                    label="Password"
+                    label={t('Password')}
                     variant="background"
-                    placeholder="Enter your password"
+                    placeholder={t('EnterPassword')}
                     value={password}
                     onChangeText={text => {
                         setPassword(text);
@@ -118,22 +162,22 @@ const LoginScreen = ({navigation}) => {
 
                 <ForgotPasswordContainer onPress={handleForgotPassword}>
                     <LabelText color={Colors.primary}>
-                        Forgot Password?
+                        {t('ForgotPassword')}?
                     </LabelText>
                 </ForgotPasswordContainer>
 
                 <ButtonContainer>
                     <ThemeButton
-                        title="Login"
+                        title={t('Login')}
                         onPress={handleLogin}
                         disabled={!email || !password}
                     />
                 </ButtonContainer>
 
                 <SignUpContainer>
-                    <LabelText>Don't have an account? </LabelText>
+                    <LabelText>{t('DontHaveAccount') + ' '}</LabelText>
                     <LabelText color={Colors.primary} onPress={handleSignUp}>
-                        Sign Up
+                        {t('Signup')}
                     </LabelText>
                 </SignUpContainer>
             </FormContainer>

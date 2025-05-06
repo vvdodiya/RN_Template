@@ -8,11 +8,11 @@ import {
 } from 'react-native-responsive-screen';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
-import Text from '@components/Common/Text';
 import Colors from '@constants/Color';
-import {navigationRef} from '@utils/NavigationService';
+import {navigationRef} from '@utils/navigationService';
 import Images from '@constants/Images';
-import themeStyles from '@styles/themeStyles';
+import themeStyles, {H4} from '@styles/themeStyles';
+import {t} from 'i18next';
 
 // Styled Components
 const SafeAreaContainer = styled.SafeAreaView`
@@ -29,7 +29,7 @@ const Subcontainer = styled.View`
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding-horizontal: ${themeStyles.commonSpacing};
+    padding-horizontal: ${themeStyles.commonSpacing / 2};
 `;
 
 const IconContainer = styled.TouchableOpacity`
@@ -51,6 +51,8 @@ const TitleContainer = styled.View`
     align-items: ${({isTitleLeft}) => (isTitleLeft ? 'flex-start' : 'center')};
 `;
 
+const TitleText = styled(H4)``;
+
 const BgTransparent = styled.View`
     background-color: ${Colors.transparent};
     height: ${hp(5)}px;
@@ -58,7 +60,7 @@ const BgTransparent = styled.View`
 `;
 
 const AppToolBar = ({
-    title = 'RN Demo',
+    title = t('AppName'),
     isBackShown = false,
     isRightIconShown = false,
     rightIconSource = Images.notification,
@@ -91,9 +93,7 @@ const AppToolBar = ({
             )}
 
             <TitleContainer isTitleLeft={isTitleLeft}>
-                <Text type="h4" color={Colors.black} style={textStyle}>
-                    {title}
-                </Text>
+                <TitleText style={textStyle}>{title}</TitleText>
             </TitleContainer>
 
             {isRightIconShown ? (

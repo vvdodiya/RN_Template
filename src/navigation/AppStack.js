@@ -1,7 +1,8 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import TabNavigator from './TabNavaigation/TabNavigator';
-import {Colors} from '@constants/index';
+import {Colors, Screens} from '@constants/index';
+import NotificationScreen from '@screens/App/Notification/NotificationScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -16,7 +17,12 @@ const AppStack = () => {
                 headerShown: false,
                 cardStyle: {backgroundColor: Colors.white},
             }}>
-            <Stack.Screen name="MainTabs" component={TabNavigator} />
+            <Stack.Screen name={Screens.Tabbar} component={TabNavigator} />
+            {/* Other screen outside the tabbar */}
+            <Stack.Screen
+                name={Screens.NotificationScreen}
+                component={NotificationScreen}
+            />
             {/* Add other app screens here */}
         </Stack.Navigator>
     );

@@ -1,22 +1,25 @@
 import React from 'react';
-import styled from 'styled-components/native';
-import {Colors, Images} from '@constants/index';
-import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
+
+import {Screens} from '@constants/index';
+
 import AppToolBar from '@components/AppToolbar/AppToolbar';
+import {VHCenterContainer, Container, H3} from '@styles/themeStyles';
+import {t} from 'i18next';
 
-const Container = styled.View`
-    flex: 1;
-    background-color: ${Colors.primary};
-`;
-
-const HomeScreen = () => {
+const HomeScreen = ({navigation}) => {
+    const handleNotification = () => {
+        navigation.push(Screens.NotificationScreen);
+    };
     return (
         <Container>
             <AppToolBar
-                title="Home"
+                title={t('Home')}
                 isRightIconShown
-                onPressRightIcon={() => {}}
+                onPressRightIcon={handleNotification}
             />
+            <VHCenterContainer>
+                <H3>{t('Home')}</H3>
+            </VHCenterContainer>
         </Container>
     );
 };

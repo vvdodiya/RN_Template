@@ -40,7 +40,7 @@ const getRouteName = () => {
 
 // Define a NavigationService object to centralize navigation-related methods
 
-const NavigationService = {
+const navigationService = {
     navigationRef,
     navigate,
     push,
@@ -49,4 +49,4 @@ const NavigationService = {
     replaceStack,
 };
 
-export default NavigationService;
+export default navigationService;

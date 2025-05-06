@@ -37,6 +37,16 @@ export const SafeAreaContainer = styled.SafeAreaView`
 // Basic container with flex
 export const Container = styled.View`
     flex: 1;
+    background-color: ${Colors.white};
+`;
+export const VHCenterContainer = styled.View`
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+`;
+
+export const ChildContainer = styled.View`
+    flex: 1;
 `;
 
 // Row container for horizontal layouts

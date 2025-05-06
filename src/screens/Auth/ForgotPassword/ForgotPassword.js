@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
 
-import {validateEmail} from '@utils/Validation';
+import {validateEmail} from '@utils/validate';
 import TextInput from '@components/Common/TextInput';
 import Images from '@constants/Images';
 import ThemeButton from '@components/Common/ThemeButton';
@@ -14,9 +14,12 @@ import {
     ButtonContainer,
     BackButton,
     BackButtonText,
+    Title,
+    Descriptiion,
 } from './styles';
 import {Colors} from '@constants/index';
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import {t} from 'i18next';
 
 const ForgotPassword = () => {
     const navigation = useNavigation();
@@ -40,24 +43,19 @@ const ForgotPassword = () => {
     return (
         <Container>
             <HeaderContainer>
-                <H3 align="center" mt={hp(3)}>
-                    Forgot Password
-                </H3>
-                <TextS align="center" mt={hp(1)}>
-                    Enter your email address and we'll send you instructions to
-                    reset your password.
-                </TextS>
+                <Title>{t('ForgotPassword')}</Title>
+                <Descriptiion>{t('ForgotPasswordDetail')}</Descriptiion>
             </HeaderContainer>
 
             <FormContainer>
                 <TextInput
-                    label="Email"
+                    label={t('Email')}
                     value={email}
                     onChangeText={text => {
                         setEmail(text);
                         setEmailError('');
                     }}
-                    placeholder="Enter your email"
+                    placeholder={t('EnterEmail')}
                     variant="background"
                     leftIcon={Images.email}
                     keyboardType="email-address"
@@ -68,7 +66,7 @@ const ForgotPassword = () => {
                 <ButtonContainer>
                     <ButtonContainer>
                         <ThemeButton
-                            title="Send Reset Link"
+                            title={t('SendResetLink')}
                             onPress={handleSubmit}
                             disabled={!email}
                         />
@@ -76,7 +74,7 @@ const ForgotPassword = () => {
 
                     <BackButton onPress={handleBackToLogin}>
                         <BackButtonText color={Colors.primary}>
-                            Back to Login
+                            {t('BackToLogin')}
                         </BackButtonText>
                     </BackButton>
                 </ButtonContainer>

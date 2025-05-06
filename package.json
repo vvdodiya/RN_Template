@@ -25,6 +25,7 @@
     "react": "19.0.0",
     "react-i18next": "^15.5.1",
     "react-native": "0.79.1",
+    "react-native-actions-sheet": "^0.9.7",
     "react-native-asset": "^2.1.1",
     "react-native-gesture-handler": "^2.25.0",
     "react-native-linear-gradient": "^2.8.3",
@@ -32,6 +33,7 @@
     "react-native-responsive-screen": "^1.4.2",
     "react-native-safe-area-context": "^5.4.0",
     "react-native-screens": "^4.10.0",
+    "react-native-use-modal": "^1.0.2",
     "react-redux": "^9.2.0",
     "styled-components": "^6.1.17"
   },

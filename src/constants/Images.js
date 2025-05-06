@@ -3,6 +3,9 @@ export default {
     menuIcon: require('@assets/images/icons/menu.png'),
     eyeOff: require('@assets/images/icons/eyeOff.png'),
     eyeOn: require('@assets/images/icons/eyeOn.png'),
+    chat: require('@assets/images/icons/chat.png'),
+    profile: require('@assets/images/icons/profile.png'),
+
     //Logo
     logo: require('@assets/images/Logo.png'),
 
@@ -11,7 +14,6 @@ export default {
     home: require('@assets/images/icons/home.png'),
     search: require('@assets/images/icons/search.png'),
     notification: require('@assets/images/icons/notification.png'),
-    profile: require('@assets/images/icons/profile.png'),
     edit: require('@assets/images/icons/edit.png'),
     settings: require('@assets/images/icons/settings.png'),
     help: require('@assets/images/icons/help.png'),

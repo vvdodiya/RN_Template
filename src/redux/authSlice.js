@@ -35,7 +35,8 @@ const authSlice = createSlice({
             state.isAuthenticated = false;
             state.authToken = null;
             state.userData = null;
-            AsyncStorage.removeItem(Constants.asyncStorageKeys.AuthToken);
+            // AsyncStorage.removeItem(Constants.asyncStorageKeys.AuthToken);
+            // AsyncStorage.removeItem(Constants.asyncStorageKeys.AuthToken);
             AsyncStorage.clear();
             global.authToken = null;
             Constants.commonConstant.authToken = null;

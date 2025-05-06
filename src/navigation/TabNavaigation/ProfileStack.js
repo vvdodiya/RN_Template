@@ -1,10 +1,9 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {Colors} from '@constants/index';
+import {Screens} from '@constants/index';
 import ProfileScreen from '@screens/App/Profile/ProfileScreen';
-// import EditProfileScreen from '@screens/Profile/EditProfileScreen';
-// import SettingsScreen from '@screens/Profile/SettingsScreen';
-import AppToolbar from '@components/AppToolbar/AppToolbar';
+import HelpScreen from '@screens/App/Profile/Help/Help';
+import SettingScreen from '@screens/App/Profile/Setting/Setting';
 
 const Stack = createNativeStackNavigator();
 
@@ -16,26 +15,26 @@ const ProfileStack = () => {
     return (
         <Stack.Navigator>
             <Stack.Screen
-                name="ProfileScreen"
+                name={Screens.ProfileScreen}
                 component={ProfileScreen}
                 options={{
                     headerShown: false,
                 }}
             />
-            {/* <Stack.Screen
-                name="EditProfileScreen"
-                component={EditProfileScreen}
+            <Stack.Screen
+                name={Screens.HelpAndSupportScreen}
+                component={HelpScreen}
                 options={{
-                    title: 'Edit Profile',
+                    headerShown: false,
                 }}
             />
             <Stack.Screen
-                name="SettingsScreen"
-                component={SettingsScreen}
+                name={Screens.SettingScreen}
+                component={SettingScreen}
                 options={{
-                    title: 'Settings',
+                    headerShown: false,
                 }}
-            /> */}
+            />
         </Stack.Navigator>
     );
 };

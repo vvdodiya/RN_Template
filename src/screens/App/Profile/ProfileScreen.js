@@ -1,95 +1,132 @@
 import React from 'react';
 import {ScrollView} from 'react-native';
-import styled from 'styled-components/native';
-import {Colors, Images} from '@constants/index';
-import {
-    widthPercentageToDP as wp,
-    heightPercentageToDP as hp,
-} from 'react-native-responsive-screen';
-import {H2, TextM} from '@styles/themeStyles';
+
+import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
+
+import {Images, Screens} from '@constants/index';
+
+import AppToolBar from '@components/AppToolbar/AppToolbar';
 import AsyncImage from '@components/AsyncImage';
 import ThemeButton from '@components/Common/ThemeButton';
-import AppToolBar from '@components/AppToolbar/AppToolbar';
 
-const Container = styled.View`
-    flex: 1;
-    background-color: ${Colors.white};
-`;
+import {Container} from '@styles/themeStyles';
+import {
+    ContentContainer,
+    HeaderContainer,
+    MenuItem,
+    MenuText,
+    ProfileImage,
+    Section,
+    UserEmail,
+    UserName,
+} from './Styles';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {logout} from '@redux/authSlice';
+import {useDispatch} from 'react-redux';
+import {t} from 'i18next';
+import {useActionSheet} from '@components/Dialog/ActionSheet/ActionSheet';
+import {showAlertWithTwoCallback} from '@utils/alerts';
 
-const HeaderContainer = styled.View`
-    align-items: center;
-    padding: ${hp(3)}px;
-    background-color: ${Colors.primary};
-`;
+const ProfileScreen = ({navigation}) => {
+    const dispatch = useDispatch();
 
-const ProfileImage = styled(AsyncImage)`
-    border-radius: ${wp(15)}px;
-    border-width: 3px;
-    border-color: ${Colors.white};
-`;
-
-const UserName = styled(H2)`
-    color: ${Colors.white};
-    margin-top: ${hp(1)}px;
-`;
-
-const UserEmail = styled(TextM)`
-    color: ${Colors.white};
-    opacity: 0.8;
-`;
-
-const ContentContainer = styled.View`
-    padding: ${hp(2)}px;
-`;
-
-const Section = styled.View`
-    margin-bottom: ${hp(3)}px;
-`;
-
-const MenuItem = styled.TouchableOpacity`
-    flex-direction: row;
-    align-items: center;
-    padding: ${hp(1.5)}px;
-    border-bottom-width: 1px;
-    border-bottom-color: ${Colors.border};
-`;
-
-const MenuText = styled(TextM)`
-    margin-left: ${wp(3)}px;
-`;
-
-const ProfileScreen = () => {
+    const {showActionSheet, modalContent} = useActionSheet();
     const menuItems = [
         {
-            id: '1',
-            title: 'Edit Profile',
-            icon: 'edit',
+            id: 'editProfile',
+            title: t('EditProfile'),
+            icon: Images.edit,
             screen: 'EditProfileScreen',
         },
         {
-            id: '2',
-            title: 'Settings',
-            icon: 'settings',
+            id: 'settings',
+            title: t('Settings'),
+            icon: Images.settings,
             screen: 'SettingsScreen',
         },
         {
-            id: '3',
-            title: 'Help & Support',
-            icon: 'help',
+            id: 'helpSupport',
+            title: t('HelpSupport'),
+            icon: Images.help,
             screen: 'HelpScreen',
         },
     ];
+    const handleSettings = () => {
+        navigation.navigate(Screens.SettingScreen);
+        console.log('Handle Settings');
+    };
 
+    const handleHelp = () => {
+        navigation.navigate(Screens.HelpAndSupportScreen);
+        console.log('Handle Help');
+    };
+
+    const handleShowImageOptions = () => {
+        console.log('Handle Show Image Options');
+
+        showActionSheet({
+            title: 'Edit Profile',
+            options: [
+                {key: 'Take Photo', title: t('TakePhoto')},
+                {key: 'Choose from Gallery', title: t('ChooseFromGallery')},
+                {key: 'Remove Photo', title: t('RemovePhoto')},
+            ],
+            cancelText: t('Cancel'),
+            destructiveIndex: 2,
+            onOptionSelect: key => {
+                console.log('Selected:', key);
+            },
+        });
+    };
+
+    const handleLogutYes = () => {
+        AsyncStorage.clear();
+        dispatch(logout());
+    };
+
+    const handleLogout = () => {
+        showAlertWithTwoCallback(
+            'Are you sure you want to logout?',
+            t('Logout'),
+            t('Yes'),
+            t('No'),
+            handleLogutYes,
+            () => {},
+            // handleCancelLogout,
+        );
+        console.log('Handle Logout');
+    };
+
+    const handleMenuItemPress = item => {
+        console.log('Handle Menu Item Press', item);
+        if (item.id === 'editProfile') {
+            handleShowImageOptions();
+        } else if (item.id === 'settings') {
+            handleSettings();
+        } else if (item.id === 'helpSupport') {
+            handleHelp();
+        }
+    };
+    const handleNotification = () => {
+        navigation.push(Screens.NotificationScreen);
+    };
     return (
         <Container>
             <ScrollView showsVerticalScrollIndicator={false}>
-                <AppToolBar title="Profile" isRightIconShown />
+                <AppToolBar
+                    title={t('Profile')}
+                    isRightIconShown
+                    onPressRightIcon={handleNotification}
+                />
                 <HeaderContainer>
                     <ProfileImage
-                        source={Images.profile}
+                        source={{
+                            uri: 'http://18.216.100.56:1337/uploads/post/d1b80f13-ae61-4135-a3ba-785af2fe2c58.jpg',
+                        }}
                         width={wp(30)}
                         height={wp(30)}
                     />
+
                     <UserName>John Doe</UserName>
                     <UserEmail>john.doe@example.com</UserEmail>
                 </HeaderContainer>
@@ -97,7 +134,9 @@ const ProfileScreen = () => {
                 <ContentContainer>
                     <Section>
                         {menuItems.map(item => (
-                            <MenuItem key={item.id}>
+                            <MenuItem
+                                key={item.id}
+                                onPress={() => handleMenuItemPress(item)}>
                                 <AsyncImage
                                     source={item.icon}
                                     width={wp(5)}
@@ -109,14 +148,13 @@ const ProfileScreen = () => {
                     </Section>
 
                     <ThemeButton
-                        title="Logout"
-                        onPress={() => {
-                            // TODO: Implement logout
-                        }}
+                        title={t('Logout')}
                         variant="secondary"
+                        onPress={handleLogout}
                     />
                 </ContentContainer>
             </ScrollView>
+            {modalContent}
         </Container>
     );
 };

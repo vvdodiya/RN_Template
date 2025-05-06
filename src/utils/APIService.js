@@ -1,113 +1,103 @@
-/* eslint-disable no-shadow */
+// apiService.js
+import axios from 'axios';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import APIConfig from '@config/APIConfig';
-import Axios from 'axios';
+import Constants from '@constants/Constant';
+import {useDispatch} from 'react-redux';
+import {logout} from '@redux/authSlice';
+import {t} from 'i18next';
 
-const axiosInstance = Axios.create({
-    baseURL: APIConfig.baseURL, // Ensure baseURL is valid and correctly formatted
+// Base URL of your API
+const BASE_URL = APIConfig.baseURL; // replace with your API
+
+const apiClient = axios.create({
+    baseURL: BASE_URL,
+    timeout: 15000,
     headers: {
-        'Cache-Control': 'no-cache', // Correct header for cache prevention
+        Accept: 'application/json',
         'Content-Type': 'application/json',
     },
-    withCredentials: true, // Include credentials for cross-origin requests if required
-    timeout: 10000, // Timeout in milliseconds (10 seconds)
 });
 
-axiosInstance.interceptors.request.use(
-    config => {
-        console.log('axios request =>', config);
+// Set up request interceptor to attach token
+apiClient.interceptors.request.use(
+    async config => {
+        const token = await AsyncStorage.getItem(
+            Constants.asyncStorageKeys.AuthToken,
+        ); // Adjust key name as needed
+
+        if (token) {
+            config.headers.Authorization = `Bearer ${token}`;
+        }
         return config;
     },
-    error => {
-        console.log('axios err =>', error);
+    error => Promise.reject(error),
+);
+
+// Response error logging
+apiClient.interceptors.response.use(
+    response => {
+        // If the response is successful, return only the data and status code
+        return {
+            data: response.data,
+            statusCode: response.status,
+        };
+    },
+    async error => {
+        if (axios.isCancel(error)) {
+            console.log('Request canceled:', error.message);
+        } else if (error.response) {
+            const {status} = error.response;
+
+            // Handle Unauthorized (401)
+            if (status === 401) {
+                console.warn('Unauthorized. Logging out...');
+                await AsyncStorage.removeItem(
+                    Constants.asyncStorageKeys.AuthToken,
+                );
+
+                let dispatch = useDispatch();
+                dispatch(logout());
+            }
+
+            console.log('Server error:', status, error.response.data);
+        } else {
+            console.log('Network error:', error.message);
+        }
 
         return Promise.reject(error);
     },
 );
 
-axiosInstance.interceptors.response.use(
-    config => {
-        // console.log('axios response =>', config);
-
-        return config;
-    },
-    error => {
-        // console.log('axios error =>', error);
-
-        return Promise.reject(error);
-    },
-);
-
-const getFormData = object => {
-    const formData = new FormData();
-
-    Object.keys(object).forEach(key => {
-        formData.append(key, object[key]);
-    });
-    return formData;
-};
-
-const APICall = async (
-    method = 'post',
-    body,
-    url = null,
-    headers = null,
-    formData = false,
-    cancelToken = null,
-) => {
-    const config = {
-        method: method.toLowerCase(),
-        timeout: 1000 * 60 * 2,
+// Cancel token factory
+export const createCancelToken = () => {
+    const controller = new AbortController();
+    return {
+        signal: controller.signal,
+        cancel: () => controller.abort(),
     };
-
-    if (global.authToken) {
-        config.headers = {
-            Authorization: `Bearer ` + global.authToken,
-        };
-    } else {
-        console.log('token not found API----', url);
-    }
-
-    if (url) {
-        config.url = url;
-    }
-    if (body && method.toLowerCase() === 'get') {
-        config.params = body;
-    } else if (body && method.toLowerCase() === 'post' && !formData) {
-        config.data = body;
-    } else if (body && method.toLowerCase() === 'post' && formData) {
-        config.data = getFormData(body);
-    } else {
-        config.data = body || undefined;
-    }
-
-    if (formData) {
-        config.headers = {
-            ...config.headers,
-            'Content-Type': 'multipart/form-data',
-        };
-        config.transformRequest = (data, headers) => {
-            return config.data;
-        };
-    }
-    if (headers) {
-        config.headers = {...config.headers, ...headers};
-    }
-    if (cancelToken) {
-        config.cancelToken = cancelToken;
-    }
-    // config.data = config.data || undefined;
-
-    console.log('config.headers ======', config.headers);
-
-    return new Promise((resolve, reject) => {
-        axiosInstance(config)
-            .then(res => {
-                resolve(res.data);
-            })
-            .catch(error => {
-                reject(error); // Handles Axios errors
-            });
-    });
 };
 
-export default APICall;
+// Main API methods
+const apiService = {
+    get: (url, params = {}, config = {}) =>
+        apiClient.get(url, {...config, params}),
+
+    post: (url, data = {}, config = {}) => apiClient.post(url, data, config),
+
+    put: (url, data = {}, config = {}) => apiClient.put(url, data, config),
+
+    delete: (url, config = {}) => apiClient.delete(url, config),
+
+    // Upload using FormData
+    postFormData: (url, formData, config = {}) =>
+        apiClient.post(url, formData, {
+            ...config,
+            headers: {
+                'Content-Type': 'multipart/form-data',
+                ...(config.headers || {}),
+            },
+        }),
+};
+
+export default apiService;

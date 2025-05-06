@@ -5,7 +5,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // Import translations
 import en from './english';
-import Constants from '@constants/Constants';
+import Constants from '@constants/Constant';
 
 // Initialize i18n
 i18n.use(initReactI18next) // Passes i18n instance to react-i18next
@@ -28,10 +28,7 @@ export const setAppLanguage = async language => {
             Constants.asyncStorageKeys.keyCurrentAppLanguage,
             language,
         );
-        await i18n.changeLanguage(language).then(() => {
-            global.currentLanguage = language;
-            // I18nManager.forceRTL(language === 'ar'); //ForceRTL
-        });
+        await i18n.changeLanguage(language).then(() => {});
     } catch (error) {
         console.error('Failed to change language:', error);
     }
@@ -40,12 +37,10 @@ export const setAppLanguage = async language => {
 // 📝 **Load Language from Storage**
 export const loadAppLanguage = async () => {
     try {
-        global.currentLanguage = 'en';
         const storedLanguage = await AsyncStorage.getItem(
             Constants.asyncStorageKeys.keyCurrentAppLanguage,
         );
         if (storedLanguage) {
-            global.currentLanguage = storedLanguage;
             await setAppLanguage(storedLanguage);
         }
     } catch (error) {

@@ -6,6 +6,7 @@ const COLORS = {
     primary: '#008080',
     secondary: '#0059B2',
     accent: '#FFB000',
+    red: '#FF0000',
 
     // Neutral colors
     white: '#FFFFFF',
@@ -13,6 +14,8 @@ const COLORS = {
     gray: '#808080',
     lightGray: '#D3D3D3',
     darkGray: '#404040',
+    iosRed: '#FF3B30',
+    iosBlue: '#007AFF',
 
     // Status colors
     success: '#28A745',

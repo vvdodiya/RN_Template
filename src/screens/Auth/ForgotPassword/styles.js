@@ -4,7 +4,7 @@ import {
     widthPercentageToDP as wp,
     heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-import {H3, LabelText, TextS, TextXL} from '@styles/themeStyles';
+import {H3, LabelText, TextS} from '@styles/themeStyles';
 
 export const Container = styled.View`
     flex: 1;
@@ -20,7 +20,14 @@ export const HeaderContainer = styled.View`
 export const FormContainer = styled.View`
     margin-top: ${hp(3)}px;
 `;
-
+export const Title = styled(H3)`
+    text-align: 'center';
+    margin-top: ${hp(3)};
+`;
+export const Descriptiion = styled(TextS)`
+    text-align: 'center';
+    margin-top: ${hp(1)};
+`;
 export const ButtonContainer = styled.View`
     margin-top: ${hp(3)}px;
 `;

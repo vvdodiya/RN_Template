@@ -7,13 +7,13 @@ import {
 } from 'react-native-responsive-screen';
 
 import {Colors, Fonts, Images, Screens} from '@constants/index';
-import AsyncImage from '@components/AsyncImage';
+
 import HomeStack from './HomeStack';
 import SearchStack from './SearchStack';
-import NotificationStack from './NotificationStack';
 import ProfileStack from './ProfileStack';
 import {Image} from 'react-native';
 import styles from './styles/styles';
+import ChatStack from './ChatStack';
 
 const Tab = createBottomTabNavigator();
 
@@ -39,10 +39,10 @@ export const routes = [
         ScreenComponent: SearchStack,
     },
     {
-        name: Screens.NotificationTab,
-        title: 'Notification',
-        icon: Images.notification,
-        ScreenComponent: NotificationStack,
+        name: Screens.ChatTab,
+        title: 'Chat',
+        icon: Images.chat,
+        ScreenComponent: ChatStack,
     },
     {
         name: Screens.ProfileTab,
@@ -78,10 +78,6 @@ const renderTabSection = () => {
                         name={screenRoute.title}
                         component={screenRoute.ScreenComponent}
                         options={({route}) => ({
-                            // tabBarStyle: {
-                            //     ...styles.myTabBarStyle,
-                            //     ...globalStyle.shadowView,
-                            // },
                             tabBarIcon: ({focused}) => {
                                 return (
                                     <TabBarIcon
