@@ -1,6 +1,7 @@
 import AsyncImage from '@components/AsyncImage';
+import ThemeText from '@components/Common/ThemeText';
 import {Colors} from '@constants/index';
-import {H2, TextM} from '@styles/themeStyles';
+
 import {
     heightPercentageToDP as hp,
     widthPercentageToDP as wp,
@@ -24,12 +25,12 @@ export const ProfileImage = styled(AsyncImage)`
     border-color: ${Colors.white};
 `;
 
-export const UserName = styled(H2)`
+export const UserName = styled(ThemeText)`
     color: ${Colors.white};
     margin-top: ${hp(1)}px;
 `;
 
-export const UserEmail = styled(TextM)`
+export const UserEmail = styled(ThemeText)`
     color: ${Colors.white};
     opacity: 0.8;
 `;
@@ -50,6 +51,6 @@ export const MenuItem = styled.TouchableOpacity`
     border-bottom-color: ${Colors.border};
 `;
 
-export const MenuText = styled(TextM)`
+export const MenuText = styled(ThemeText)`
     margin-left: ${wp(3)}px;
 `;

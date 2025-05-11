@@ -1,14 +1,15 @@
 import React from 'react';
 import AppToolBar from '@components/AppToolbar/AppToolbar';
-import {VHCenterContainer, Container, H3} from '@styles/themeStyles';
+import {VHCenterContainer, Container} from '@styles/themeStyles';
 import {t} from 'i18next';
+import ThemeText from '@components/Common/ThemeText';
 
 const NotificationScreen = () => {
     return (
         <Container>
             <AppToolBar title={t('Notification')} isBackShown />
             <VHCenterContainer>
-                <H3>{t('Notification')}</H3>
+                <ThemeText size={26}>{t('Notification')}</ThemeText>
             </VHCenterContainer>
         </Container>
     );

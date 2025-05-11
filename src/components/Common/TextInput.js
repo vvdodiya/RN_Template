@@ -1,45 +1,64 @@
 import React, {useState} from 'react';
 import styled from 'styled-components/native';
-import {Colors, Fonts, Images} from '../../constants';
-import {LabelText} from '../../styles/themeStyles';
+
 import {
     widthPercentageToDP as wp,
     heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
+import Fonts from '@constants/Fonts';
+import Colors from '@constants/Color';
+import ThemeText from './ThemeText';
+import Images from '@constants/Images';
+import {getResponsiveFontSize} from '@utils/commonUtil';
 
 const Container = styled.View`
     width: 100%;
     margin-vertical: ${hp(1)}px;
 `;
 
+const LeftTextButtom = styled.TouchableOpacity`
+    width: ${wp(9)};
+    align-items: center;
+    justify-content: center;
+`;
+
+const LineSeprator = styled.View`
+    background-color: ${Colors.ThemeBorderColor};
+    width: 1;
+    height: 100%;
+`;
 const InputContainer = styled.View`
     flex-direction: row;
     align-items: center;
     opacity: ${props => (props.disabled ? 0.5 : 1)};
     ${props =>
-        props.variant === 'underline'
+        props.variant === 'border'
+            ? `border-width:1px;
+        border-color:${Colors.ThemeBorderColor};
+        border-radius: ${wp(10)}px;`
+            : props.variant === 'underline'
             ? `
     border-bottom-width: 1px;
-    border-bottom-color: ${props.error ? Colors.error : Colors.gray};
+    border-bottom-color: ${props.error ? Colors.errorColor : Colors.gray};
   `
             : `
-    background-color: ${Colors.blackOpacity.black10};
-    border-radius: ${wp(3)}px;
+    border-radius: ${wp(10)}px;
+    background-color:${Colors.blackOpacity.black10};
   `}
 `;
 
 const StyledTextInput = styled.TextInput`
     flex: 1;
-    height: ${hp(6)}px;
+    height: ${wp(10.15)}px;
     padding-horizontal: ${wp(4)}px;
     font-family: ${Fonts.PoppinsRegular};
-    font-size: ${hp(1.8)}px;
-    color: ${Colors.black};
+    font-size: ${props => props.size}px;
+    color: ${Colors.primary};
 `;
 
 const IconContainer = styled.TouchableOpacity`
     padding-horizontal: ${wp(3)}px;
-    height: ${hp(6)}px;
+    height: ${wp(10.15)}px;
     justify-content: center;
     align-items: center;
 `;
@@ -53,13 +72,17 @@ const IconImage = styled.Image`
 const TextInput = ({
     containerStyle,
     inputStyle,
-    variant = 'underline', //background, underline
+    variant, //background, underline, border
     error,
     label,
     leftIcon,
     rightIcon,
     secureTextEntry,
     disabled,
+    size = 14,
+    leftButton,
+    leftText,
+    onLeftButtonPress,
     ...props
 }) => {
     const [isPasswordVisible, setIsPasswordVisible] = useState(false);
@@ -94,19 +117,31 @@ const TextInput = ({
         }
         return null;
     };
+    const responsiveSize = getResponsiveFontSize(size);
 
     return (
         <Container style={containerStyle}>
-            {label && <LabelText mb={hp(0.5)}>{label}</LabelText>}
+            {label && (
+                <ThemeText mb={hp(0.5)} size={responsiveSize}>
+                    {label}
+                </ThemeText>
+            )}
             <InputContainer variant={variant} error={error} disabled={disabled}>
+                {leftButton && (
+                    <LeftTextButtom onLeftButtonPress>
+                        <ThemeText>{leftText}</ThemeText>
+                    </LeftTextButtom>
+                )}
+                {leftButton && <LineSeprator />}
                 {leftIcon && (
                     <IconContainer disabled={disabled}>
                         <IconImage source={leftIcon} resizeMode="contain" />
                     </IconContainer>
                 )}
                 <StyledTextInput
+                    size={responsiveSize}
                     style={inputStyle}
-                    placeholderTextColor={Colors.gray}
+                    placeholderTextColor={Colors.themeBlack}
                     secureTextEntry={secureTextEntry && !isPasswordVisible}
                     editable={!disabled}
                     {...props}
@@ -114,9 +149,9 @@ const TextInput = ({
                 {renderRightIcon()}
             </InputContainer>
             {error && (
-                <LabelText color={Colors.error} mt={hp(0.5)}>
+                <ThemeText color={Colors.error} mt={hp(0.5)}>
                     {error}
-                </LabelText>
+                </ThemeText>
             )}
         </Container>
     );

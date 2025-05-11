@@ -16,7 +16,8 @@ import {
 } from 'react-native-responsive-screen';
 import Colors from '@constants/Color';
 
-import {H6, TextM} from '@styles/themeStyles';
+import ThemeText from '@components/Common/ThemeText';
+import {getResponsiveFontSize} from '@utils/commonUtil';
 
 const {height: SCREEN_HEIGHT} = Dimensions.get('window');
 
@@ -41,13 +42,14 @@ const OptionContainer = styled.View`
     padding: 0 0;
 `;
 
-const OptionTitle = styled(TextM)`
+const OptionTitle = styled(ThemeText)`
     text-align: center;
     color: ${Colors.gray};
 `;
-const OptionItem = styled(H6)`
+const OptionItem = styled(ThemeText)`
     text-align: center;
     color: ${props => (props.isDestructive ? Colors.iosRed : Colors.iosBlue)};
+    font-size: ${getResponsiveFontSize(16)};
 `;
 const OptionButton = styled(TouchableOpacity)`
     background-color: ${Colors.white};
@@ -108,7 +110,9 @@ const ActionSheetContent = React.memo(
                         }}>
                         <ActionSheetContainer>
                             <View style={styles.handle} />
-                            {title && <OptionTitle>{title}</OptionTitle>}
+                            {title && (
+                                <OptionTitle size={16}>{title}</OptionTitle>
+                            )}
                             <OptionContainer>
                                 {options.map((option, index) => {
                                     const isLast = index === options.length - 1;

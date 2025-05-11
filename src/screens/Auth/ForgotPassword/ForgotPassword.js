@@ -5,7 +5,6 @@ import {validateEmail} from '@utils/validate';
 import TextInput from '@components/Common/TextInput';
 import Images from '@constants/Images';
 import ThemeButton from '@components/Common/ThemeButton';
-import {H3, TextS} from '@styles/themeStyles';
 
 import {
     Container,
@@ -43,8 +42,12 @@ const ForgotPassword = () => {
     return (
         <Container>
             <HeaderContainer>
-                <Title>{t('ForgotPassword')}</Title>
-                <Descriptiion>{t('ForgotPasswordDetail')}</Descriptiion>
+                <Title size={26} align={'center'} type="semiBold">
+                    {t('ForgotPassword')}
+                </Title>
+                <Descriptiion align={'center'} mt={hp(1)}>
+                    {t('ForgotPasswordDetail')}
+                </Descriptiion>
             </HeaderContainer>
 
             <FormContainer>

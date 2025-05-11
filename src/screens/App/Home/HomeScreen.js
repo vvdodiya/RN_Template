@@ -3,8 +3,9 @@ import React from 'react';
 import {Screens} from '@constants/index';
 
 import AppToolBar from '@components/AppToolbar/AppToolbar';
-import {VHCenterContainer, Container, H3} from '@styles/themeStyles';
+import {VHCenterContainer, Container} from '@styles/themeStyles';
 import {t} from 'i18next';
+import ThemeText from '@components/Common/ThemeText';
 
 const HomeScreen = ({navigation}) => {
     const handleNotification = () => {
@@ -18,7 +19,7 @@ const HomeScreen = ({navigation}) => {
                 onPressRightIcon={handleNotification}
             />
             <VHCenterContainer>
-                <H3>{t('Home')}</H3>
+                <ThemeText size={26}>{t('Home')}</ThemeText>
             </VHCenterContainer>
         </Container>
     );

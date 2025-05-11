@@ -40,6 +40,7 @@ export const loadAppLanguage = async () => {
         const storedLanguage = await AsyncStorage.getItem(
             Constants.asyncStorageKeys.keyCurrentAppLanguage,
         );
+        console.log('Stored lang---', storedLanguage);
         if (storedLanguage) {
             await setAppLanguage(storedLanguage);
         }

@@ -1,8 +1,9 @@
 import React from 'react';
 import AppToolBar from '@components/AppToolbar/AppToolbar';
-import {VHCenterContainer, Container, H3} from '@styles/themeStyles';
+import {VHCenterContainer, Container} from '@styles/themeStyles';
 import {t} from 'i18next';
 import Screens from '@constants/Screens';
+import ThemeText from '@components/Common/ThemeText';
 
 const ChatScreen = ({navigation}) => {
     const handleNotification = () => {
@@ -16,7 +17,7 @@ const ChatScreen = ({navigation}) => {
                 onPressRightIcon={handleNotification}
             />
             <VHCenterContainer>
-                <H3>{t('Chat')}</H3>
+                <ThemeText size={26}>{t('Chat')}</ThemeText>
             </VHCenterContainer>
         </Container>
     );

@@ -14,7 +14,6 @@ import {
 import TextInput from '@components/Common/TextInput';
 import ThemeButton from '@components/Common/ThemeButton';
 
-import {H2, LabelText} from '@styles/themeStyles';
 import Colors from '@constants/Color';
 import Images from '@constants/Images';
 
@@ -33,6 +32,7 @@ import apiService from '@utils/apiService';
 import {getErrorMessage} from '@utils/getErrorMessage';
 import {showAlert} from '@utils/alerts';
 import {APIEndpoint} from '@constants/ApiEndPoins';
+import ThemeText from '@components/Common/ThemeText';
 
 const LoginScreen = ({navigation}) => {
     const [email, setEmail] = useState('');
@@ -119,7 +119,9 @@ const LoginScreen = ({navigation}) => {
         <Container>
             <LogoContainer>
                 <Logo source={Images.logo} />
-                <H2 mt={hp(2)}>Welcome Back!</H2>
+                <ThemeText size={25} type="semiBold" mt={hp(2)}>
+                    Welcome Back!
+                </ThemeText>
             </LogoContainer>
 
             <FormContainer>
@@ -161,9 +163,9 @@ const LoginScreen = ({navigation}) => {
                 />
 
                 <ForgotPasswordContainer onPress={handleForgotPassword}>
-                    <LabelText color={Colors.primary}>
+                    <ThemeText color={Colors.primary}>
                         {t('ForgotPassword')}?
-                    </LabelText>
+                    </ThemeText>
                 </ForgotPasswordContainer>
 
                 <ButtonContainer>
@@ -175,10 +177,10 @@ const LoginScreen = ({navigation}) => {
                 </ButtonContainer>
 
                 <SignUpContainer>
-                    <LabelText>{t('DontHaveAccount') + ' '}</LabelText>
-                    <LabelText color={Colors.primary} onPress={handleSignUp}>
+                    <ThemeText>{t('DontHaveAccount') + ' '}</ThemeText>
+                    <ThemeText color={Colors.primary} onPress={handleSignUp}>
                         {t('Signup')}
-                    </LabelText>
+                    </ThemeText>
                 </SignUpContainer>
             </FormContainer>
         </Container>

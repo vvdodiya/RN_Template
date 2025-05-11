@@ -43,6 +43,7 @@ export const asyncStorageKeys = {
     UserData: 'userData',
     UserID: 'userID',
     AuthToken: 'authToken',
+    keyCurrentAppLanguage: 'currentAppLang',
 };
 
 export const emiterKey = {};

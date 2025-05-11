@@ -142,7 +142,7 @@ const ProfileScreen = ({navigation}) => {
                                     width={wp(5)}
                                     height={wp(5)}
                                 />
-                                <MenuText>{item.title}</MenuText>
+                                <MenuText size={16}>{item.title}</MenuText>
                             </MenuItem>
                         ))}
                     </Section>

@@ -75,125 +75,125 @@ export const SeparatorLine = styled.View`
 // Scrollable container
 export const ScrollContainer = styled.ScrollView``;
 
-/**
- * Text Components
- * Base text component with default styling and customizable props
- */
-const BaseText = styled.Text`
-    font-size: ${props => props.size || hp(1.8)}px;
-    font-family: ${props => props.fontFamily || Fonts.PoppinsRegular};
-    color: ${props => props.color || Colors.black};
-    margin-top: ${({mt}) => mt || 0}px;
-    margin-left: ${({ml}) => ml || 0}px;
-    margin-right: ${({mr}) => mr || 0}px;
-    margin-bottom: ${({mb}) => mb || 0}px;
-    text-align: ${({align}) => align || 'left'};
-`;
+// /**
+//  * Text Components
+//  * Base text component with default styling and customizable props
+//  */
+// const BaseText = styled.Text`
+//     font-size: ${props => props.size || hp(1.8)}px;
+//     font-family: ${props => props.fontFamily || Fonts.PoppinsRegular};
+//     color: ${props => props.color || Colors.black};
+//     margin-top: ${({mt}) => mt || 0}px;
+//     margin-left: ${({ml}) => ml || 0}px;
+//     margin-right: ${({mr}) => mr || 0}px;
+//     margin-bottom: ${({mb}) => mb || 0}px;
+//     text-align: ${({align}) => align || 'left'};
+// `;
 
-/**
- * Heading Styles (H1-H6)
- * Hierarchical heading components with different sizes and weights
- * Usage: <H1>Main Title</H1>, <H2>Section Title</H2>, etc.
- */
-export const H1 = styled(BaseText)`
-    font-size: ${props => props.size || hp(4)}px;
-    font-family: ${Fonts.PoppinsBold};
-`;
+// /**
+//  * Heading Styles (H1-H6)
+//  * Hierarchical heading components with different sizes and weights
+//  * Usage: <H1>Main Title</H1>, <H2>Section Title</H2>, etc.
+//  */
+// export const H1 = styled(BaseText)`
+//     font-size: ${props => props.size || hp(4)}px;
+//     font-family: ${Fonts.PoppinsBold};
+// `;
 
-export const H2 = styled(BaseText)`
-    font-size: ${props => props.size || hp(3.5)}px;
-    font-family: ${Fonts.PoppinsBold};
-`;
+// export const H2 = styled(BaseText)`
+//     font-size: ${props => props.size || hp(3.5)}px;
+//     font-family: ${Fonts.PoppinsBold};
+// `;
 
-export const H3 = styled(BaseText)`
-    font-size: ${props => props.size || hp(3)}px;
-    font-family: ${Fonts.PoppinsMedium};
-`;
+// export const H3 = styled(BaseText)`
+//     font-size: ${props => props.size || hp(3)}px;
+//     font-family: ${Fonts.PoppinsMedium};
+// `;
 
-export const H4 = styled(BaseText)`
-    font-size: ${props => props.size || hp(2.5)}px;
-    font-family: ${Fonts.PoppinsMedium};
-`;
+// export const H4 = styled(BaseText)`
+//     font-size: ${props => props.size || hp(2.5)}px;
+//     font-family: ${Fonts.PoppinsMedium};
+// `;
 
-export const H5 = styled(BaseText)`
-    font-size: ${props => props.size || hp(2.2)}px;
-    font-family: ${Fonts.PoppinsMedium};
-`;
+// export const H5 = styled(BaseText)`
+//     font-size: ${props => props.size || hp(2.2)}px;
+//     font-family: ${Fonts.PoppinsMedium};
+// `;
 
-export const H6 = styled(BaseText)`
-    font-size: ${props => props.size || hp(2)}px;
-    font-family: ${Fonts.PoppinsMedium};
-`;
+// export const H6 = styled(BaseText)`
+//     font-size: ${props => props.size || hp(2)}px;
+//     font-family: ${Fonts.PoppinsMedium};
+// `;
 
-/**
- * Text Size Styles
- * Regular text components with different sizes
- * Usage: <TextXXL>Large Text</TextXXL>, <TextM>Medium Text</TextM>, etc.
- */
-export const TextXXL = styled(BaseText)`
-    font-size: ${props => props.size || hp(3.5)}px;
-    font-family: ${Fonts.PoppinsRegular};
-`;
+// /**
+//  * Text Size Styles
+//  * Regular text components with different sizes
+//  * Usage: <TextXXL>Large Text</TextXXL>, <TextM>Medium Text</TextM>, etc.
+//  */
+// export const TextXXL = styled(BaseText)`
+//     font-size: ${props => props.size || hp(3.5)}px;
+//     font-family: ${Fonts.PoppinsRegular};
+// `;
 
-export const TextXL = styled(BaseText)`
-    font-size: ${props => props.size || hp(3)}px;
-    font-family: ${Fonts.PoppinsRegular};
-`;
+// export const TextXL = styled(BaseText)`
+//     font-size: ${props => props.size || hp(3)}px;
+//     font-family: ${Fonts.PoppinsRegular};
+// `;
 
-export const TextL = styled(BaseText)`
-    font-size: ${props => props.size || hp(2.5)}px;
-    font-family: ${Fonts.PoppinsRegular};
-`;
+// export const TextL = styled(BaseText)`
+//     font-size: ${props => props.size || hp(2.5)}px;
+//     font-family: ${Fonts.PoppinsRegular};
+// `;
 
-export const TextM = styled(BaseText)`
-    font-size: ${props => props.size || hp(2)}px;
-    font-family: ${Fonts.PoppinsRegular};
-`;
+// export const TextM = styled(BaseText)`
+//     font-size: ${props => props.size || hp(2)}px;
+//     font-family: ${Fonts.PoppinsRegular};
+// `;
 
-export const TextS = styled(BaseText)`
-    font-size: ${props => props.size || hp(1.8)}px;
-    font-family: ${Fonts.PoppinsRegular};
-`;
+// export const TextS = styled(BaseText)`
+//     font-size: ${props => props.size || hp(1.8)}px;
+//     font-family: ${Fonts.PoppinsRegular};
+// `;
 
-export const TextXS = styled(BaseText)`
-    font-size: ${props => props.size || hp(1.5)}px;
-    font-family: ${Fonts.PoppinsRegular};
-`;
+// export const TextXS = styled(BaseText)`
+//     font-size: ${props => props.size || hp(1.5)}px;
+//     font-family: ${Fonts.PoppinsRegular};
+// `;
 
-export const TextXXS = styled(BaseText)`
-    font-size: ${props => props.size || hp(1.2)}px;
-    font-family: ${Fonts.PoppinsRegular};
-`;
+// export const TextXXS = styled(BaseText)`
+//     font-size: ${props => props.size || hp(1.2)}px;
+//     font-family: ${Fonts.PoppinsRegular};
+// `;
 
 /**
  * Special Text Styles
  * Components for specific use cases like buttons, inputs, and labels
  * Usage: <ButtonText>Click Me</ButtonText>, <LabelText>Username</LabelText>, etc.
  */
-export const ButtonText = styled(BaseText)`
-    font-size: ${props => props.size || hp(2)}px;
-    font-family: ${Fonts.PoppinsMedium};
-`;
+// export const ButtonText = styled(BaseText)`
+//     font-size: ${props => props.size || hp(2)}px;
+//     font-family: ${Fonts.PoppinsMedium};
+// `;
 
-export const InputText = styled(BaseText)`
-    font-size: ${props => props.size || hp(1.8)}px;
-    font-family: ${Fonts.PoppinsMedium};
-`;
+// export const InputText = styled(BaseText)`
+//     font-size: ${props => props.size || hp(1.8)}px;
+//     font-family: ${Fonts.PoppinsMedium};
+// `;
 
-export const LabelText = styled(BaseText)`
-    font-size: ${props => props.size || hp(1.5)}px;
-    font-family: ${Fonts.PoppinsRegular};
-    color: ${props => (props.color ? props.color : Colors.gray)};
-    line-height: ${hp(2.2)}px;
-`;
+// export const LabelText = styled(BaseText)`
+//     font-size: ${props => props.size || hp(1.5)}px;
+//     font-family: ${Fonts.PoppinsRegular};
+//     color: ${props => (props.color ? props.color : Colors.gray)};
+//     line-height: ${hp(2.2)}px;
+// `;
 
-export const InnerLabelText = styled(BaseText)`
-    font-size: ${props => props.size || hp(1.5)}px;
-    font-family: ${Fonts.PoppinsRegular};
-    color: ${props => (props.color ? props.color : Colors.gray)};
-    line-height: ${hp(2.2)}px;
-    width: ${wp(55)}px;
-`;
+// export const InnerLabelText = styled(BaseText)`
+//     font-size: ${props => props.size || hp(1.5)}px;
+//     font-family: ${Fonts.PoppinsRegular};
+//     color: ${props => (props.color ? props.color : Colors.gray)};
+//     line-height: ${hp(2.2)}px;
+//     width: ${wp(55)}px;
+// `;
 
 /**
  * Theme Constants

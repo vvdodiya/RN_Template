@@ -11,8 +11,9 @@ import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import Colors from '@constants/Color';
 import {navigationRef} from '@utils/navigationService';
 import Images from '@constants/Images';
-import themeStyles, {H4} from '@styles/themeStyles';
+import themeStyles from '@styles/themeStyles';
 import {t} from 'i18next';
+import ThemeText from '@components/Common/ThemeText';
 
 // Styled Components
 const SafeAreaContainer = styled.SafeAreaView`
@@ -51,7 +52,7 @@ const TitleContainer = styled.View`
     align-items: ${({isTitleLeft}) => (isTitleLeft ? 'flex-start' : 'center')};
 `;
 
-const TitleText = styled(H4)``;
+const TitleText = styled(ThemeText)``;
 
 const BgTransparent = styled.View`
     background-color: ${Colors.transparent};
@@ -68,7 +69,7 @@ const AppToolBar = ({
     onPressRightIcon = () => {},
     containerStyle,
     isTitleLeft = false,
-    textStyle,
+    titleTextStyle,
 }) => {
     // Button Press
     const onPressBack = () => {
@@ -93,7 +94,9 @@ const AppToolBar = ({
             )}
 
             <TitleContainer isTitleLeft={isTitleLeft}>
-                <TitleText style={textStyle}>{title}</TitleText>
+                <TitleText size={22} type="semiBold" style={titleTextStyle}>
+                    {title}
+                </TitleText>
             </TitleContainer>
 
             {isRightIconShown ? (
