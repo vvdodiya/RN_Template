@@ -50,10 +50,10 @@ const InputContainer = styled.View`
 const StyledTextInput = styled.TextInput`
     flex: 1;
     height: ${wp(10.15)}px;
-    padding-horizontal: ${wp(4)}px;
     font-family: ${Fonts.PoppinsRegular};
     font-size: ${props => props.size}px;
     color: ${Colors.primary};
+    padding: 0px ${wp(4)}px;
 `;
 
 const IconContainer = styled.TouchableOpacity`
